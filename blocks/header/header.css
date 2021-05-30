@@ -1,4 +1,9 @@
 .header{
     margin: auto;
-    width: 85%;
+    width: 69%;
+}
+@media (max-width:624px){ 
+    .header{
+        width: 83%;
+    }
 }
