@@ -1,9 +1,8 @@
 .header{
-    margin: auto;
-    width: 69%;
+    width: 100%;
 }
-@media (max-width:624px){ 
+@media (max-width:624px){
     .header{
-        width: 83%;
+
     }
 }
