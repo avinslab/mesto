@@ -5,7 +5,7 @@
     margin: auto;
 }
 
-@media (max-width:624px){
+@media (max-width:950px){
     .header__line{
         width: 100%;
     }
