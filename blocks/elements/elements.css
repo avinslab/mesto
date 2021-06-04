@@ -1,0 +1,15 @@
+.elements{
+    width: 69%;
+    border: green 1px solid;
+    margin: 47px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,280px);
+    column-gap: 17px;
+    row-gap: 20px;
+    justify-content: center;
+}
+@media (max-width:950px){
+    .elements{
+        width: 87.5%;
+    }
+}
