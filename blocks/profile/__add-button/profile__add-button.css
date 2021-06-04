@@ -9,6 +9,12 @@
 @media (max-width:950px){
     .profile__add-button{
         margin: 31px 0;
+        width:33%;
+    }
+}
+@media (max-width:640px){
+    .profile__add-button{
+        margin: 31px 0;
         width:100%;
     }
 }
