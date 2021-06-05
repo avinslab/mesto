@@ -3,3 +3,8 @@
     width: 120px;
     border: solid red 1px;
 }
+@media (max-width:950px){
+    .profile__avatar{
+        margin-top: 40px;
+    }
+}
