@@ -3,11 +3,10 @@
     margin: 67px auto;
     display: flex;
     justify-content: flex-start;
-    border:green 1px solid;
 }
 @media (max-width:950px){
     .footer{
         width: 87.5%;
-        margin: 48px auto;
+        margin:48px auto;
     }
 }

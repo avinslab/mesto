@@ -1,7 +1,6 @@
 .profile__avatar{
     border-radius: 50%;
     width: 120px;
-    border: solid red 1px;
 }
 @media (max-width:950px){
     .profile__avatar{

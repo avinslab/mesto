@@ -13,3 +13,8 @@
 .popup__input:focus{
     outline-color:#FFFFFF;
 }
+@media (max-width:950px){
+  .popup__input{
+    padding: 9px 0;
+  }
+}

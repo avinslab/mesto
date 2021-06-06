@@ -10,7 +10,6 @@
     text-overflow:ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    border: solid red 1px;
 }
 @media (max-width:950px){
     .profile__subtitle{

@@ -1,7 +1,6 @@
 .elements{
     width: 69%;
-    border: green 1px solid;
-    margin: 47px auto;
+    margin: 55px auto;
     display: grid;
     grid-template-columns: repeat(auto-fit,280px);
     column-gap: 17px;
@@ -11,5 +10,6 @@
 @media (max-width:950px){
     .elements{
         width: 87.5%;
+        margin: 4px auto;
     }
 }

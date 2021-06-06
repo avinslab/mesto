@@ -2,7 +2,7 @@
     width: 69%;
     min-height: 33px;
     margin:45px auto;
-    background-image: url("../../../images/logo.png");
+    background-image: url("../../../images/logo.svg");
     background-size: contain;
     background-repeat: no-repeat;
 }
@@ -11,8 +11,10 @@
       margin-top: 8.8%;
       margin-bottom: 8%;
       min-height: 25px;
-      border: solid red 1px;
       width: 83%;
     }
 }
-
+.header__logo:hover{
+  opacity: 0;
+  transition: opacity .3s ease;
+}

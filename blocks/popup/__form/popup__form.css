@@ -5,3 +5,9 @@
   border: 0;
   margin: auto;
 }
+@media (max-width:950px){
+  .popup__form{
+      width: 85%;
+      height: 56%;
+  }
+}
