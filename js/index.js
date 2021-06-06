@@ -10,9 +10,11 @@ saveButton.addEventListener('submit', formSubmitHandler);
 function showPopup(){
   let profileTitle = document.querySelector('.profile__title');
   let profileSubTitle = document.querySelector('.profile__subtitle');
+  let popupInputName = document.getElementById('name');
+  let popupInputdescription = document.getElementById('description');
 
-  document.getElementById('name').value = profileTitle.textContent;
-  document.getElementById('description').value = profileSubTitle.textContent;
+  popupInputName.value = profileTitle.textContent;
+  popupInputdescription.value = profileSubTitle.textContent;
 
   popupWindow.classList.add('popup_opened');
 }
@@ -23,9 +25,12 @@ function hidePopup(){
 
 function formSubmitHandler (evt) {
   evt.preventDefault();
-
-  document.querySelector('.profile__title').textContent=document.getElementById('name').value;
-  document.querySelector('.profile__subtitle').textContent=document.getElementById('description').value;
+  let profileTitle =  document.querySelector('.profile__title');
+  let profileSubTitle = document.querySelector('.profile__subtitle');
+  let popupInputName = document.getElementById('name');
+  let popupInputdescription = document.getElementById('description');
+  profileTitle.textContent=popupInputName.value;
+  profileSubTitle.textContent=popupInputdescription.value;
   hidePopup();
 }
 
