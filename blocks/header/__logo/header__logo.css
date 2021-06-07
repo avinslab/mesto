@@ -1,20 +1,22 @@
-.header__logo{
-    width: 69%;
-    min-height: 33px;
-    margin:45px auto;
-    background-image: url("../../../images/logo.svg");
-    background-size: contain;
-    background-repeat: no-repeat;
+.header__logo {
+  width: 69%;
+  min-height: 33px;
+  margin: 45px auto;
+  background-image: url("../../../images/logo.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
-@media (max-width:624px){
-    .header__logo{
-      margin-top: 8.8%;
-      margin-bottom: 8%;
-      min-height: 25px;
-      width: 83%;
-    }
+
+@media (max-width:624px) {
+  .header__logo {
+    margin-top: 8.8%;
+    margin-bottom: 8%;
+    min-height: 25px;
+    width: 83%;
+  }
 }
-.header__logo:hover{
+
+.header__logo:hover {
   opacity: 0;
   transition: opacity .3s ease;
 }

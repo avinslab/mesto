@@ -1,12 +1,12 @@
-.header__line{
-    opacity: 0.7;
-    border: 1px solid #545454;
-    width: 69%;
-    margin: auto;
+.header__line {
+  opacity: 0.7;
+  border: 1px solid #545454;
+  width: 69%;
+  margin: auto;
 }
 
-@media (max-width:950px){
-    .header__line{
-        width: 99%;
-    }
+@media (max-width:950px) {
+  .header__line {
+    width: 99%;
+  }
 }

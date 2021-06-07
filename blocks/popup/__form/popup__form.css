@@ -1,13 +1,15 @@
-.popup__form{
+.popup__form {
   display: flex;
   flex-direction: column;
   width: calc(100% - 72px);
   border: 0;
   margin: auto;
+  padding-top: 15px;
 }
-@media (max-width:950px){
-  .popup__form{
-      width: 85%;
-      height: 56%;
+
+@media (max-width:950px) {
+  .popup__form {
+    width: 85%;
+    padding-top: 45px;
   }
 }

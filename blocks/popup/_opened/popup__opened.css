@@ -1,5 +1,0 @@
-.popup_opened{
-  display: flex;
-  flex-direction: column;
-  width: calc (100% - 72px);
-}
