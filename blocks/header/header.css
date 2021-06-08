@@ -1,3 +1,10 @@
 .header {
-  width: 100%;
+  width: 69%;
+  border-bottom: 1px solid #545454;
+  margin: auto;
+}
+@media (max-width:624px) {
+  .header {
+    width: 100%;
+  }
 }
