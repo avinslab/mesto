@@ -5,6 +5,7 @@
   border: 0;
   margin: auto;
   padding-top: 15px;
+  padding-bottom: 0;
 }
 
 @media (max-width:950px) {

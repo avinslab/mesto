@@ -1,5 +1,5 @@
 .popup__input {
-  font-family: Inter;
+  font-family: 'Inter', ‘Arial’, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -12,10 +12,12 @@
   margin-top: 30px;
 }
 
-.popup__input:focus {
-  outline-color: #FFFFFF;
+@media (max-width:950px) {
+  .popup__input {
+    margin-top: 28px;
+  }
 }
 
-@media (max-width:950px) {
-  .popup__input {}
+.popup__input:focus {
+  outline-color: #FFFFFF;
 }
