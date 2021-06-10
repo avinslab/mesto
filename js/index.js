@@ -8,7 +8,6 @@ let popupInputName = document.getElementById('name');
 let popupInputdescription = document.getElementById('description');
 
 function showPopup() {
-  popupInputdescription = document.getElementById('description');
   popupInputName.value = profileTitle.textContent;
   popupInputdescription.value = profileSubTitle.textContent;
 
@@ -21,10 +20,7 @@ function hidePopup() {
 
 function submitFormHandler(evt) {
   evt.preventDefault();
-  
-  popupInputName = document.getElementById('name');
-  popupInputdescription = document.getElementById('description');
-  
+
   profileTitle.textContent = popupInputName.value;
   profileSubTitle.textContent = popupInputdescription.value;
   hidePopup();
@@ -32,4 +28,4 @@ function submitFormHandler(evt) {
 
 editButton.addEventListener('click', showPopup);
 closeButton.addEventListener('click', hidePopup);
-saveButton.addEventListener('submit', submitFormHandler);	
+saveButton.addEventListener('submit', submitFormHandler);
