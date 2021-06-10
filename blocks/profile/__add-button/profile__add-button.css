@@ -6,6 +6,10 @@
   margin-left: auto;
   min-width: 150px;
   min-height: 50px;
+  background-image: url(./../../../images/add_button.svg);
+  background-size: 22px 22px;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 @media (max-width:950px) {
@@ -17,7 +21,7 @@
 
 @media (max-width:640px) {
   .profile__add-button {
-    margin: 31px 0;
+    background-size: 16px 16px;
     width: 100%;
   }
 }
