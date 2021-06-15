@@ -26,28 +26,38 @@
       <button class="profile__add-button" type="button" aria-label="Добавить"></button>
     </section>
     <section class="elements">
-
     </section>
     <footer class="footer">
       <p class="footer__copyright">
         &COPY; 2020 Mesto Russia
       </p>
     </footer>
-    <div class="popup">
+    <div class="popup" id="edit-profile">
       <div class="popup__container">
-        <button class="popup__close-button" type="button" ></button>
+        <button class="popup__close-button" type="button" id="close-profile-popup"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
         <form class="popup__form" name="profile-edit-form" method="post">
           <input type="text" class="popup__input" id="name" name="profile-name">
           <input type="text" class="popup__input" id="description" name="profile-description">
-          <button type="submit" class="popup__save-button">Сохранить</button>
+          <button type="submit" class="popup__save-button" id="save-profile-popup">Сохранить</button>
+        </form>
+      </div>
+    </div>
+    <div class="popup" id="add-element">
+      <div class="popup__container">
+        <button class="popup__close-button" type="button" id="close-element-popup"></button>
+        <h2 class="popup__title">Новое место</h2>
+        <form class="popup__form" name="element-edit-form" method="post">
+          <input type="text" class="popup__input" id="element-name" name="element-name" placeholder="Название">
+          <input type="text" class="popup__input" id="element-link" name="element-image" placeholder="Ссылка на картинку">
+          <button type="submit" class="popup__save-button" id="save-element">Создать</button>
         </form>
       </div>
     </div>
   </main>
   <template id="element">
     <article class="element">
-      <img class="element__image"/>
+      <img class="element__image" />
       <div class="element__panel">
         <h2 class="element__title"></h2>
         <button class="element__like-button" type="button"></button>
