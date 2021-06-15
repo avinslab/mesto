@@ -96,6 +96,7 @@ function addElement(card) {
   element.querySelector('.element__image').alt = card.name;
   element.querySelector('.element__title').textContent = card.name;
   element.querySelector('.element__like-button').addEventListener('click', function (evt) { evt.target.classList.toggle('element__like-button_active'); });
+  element.querySelector('.element__trash-button').addEventListener('click', function (evt) { evt.target.parentElement.remove(); });
   elementsContainer.append(element);
   hideAddElPopup();
 }
