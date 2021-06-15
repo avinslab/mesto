@@ -8,7 +8,6 @@ const profileSubTitle = document.querySelector('.profile__subtitle');
 let popupInputName = document.getElementById('name');
 let popupInputdescription = document.getElementById('description');
 
-
 //элементы управления карточками мест
 const elementsContainer = document.querySelector('.elements');
 const elementTemplate = document.querySelector('#element').content;
@@ -18,6 +17,12 @@ const addElPopup = document.getElementById('add-element');
 const saveElButton = document.getElementById('save-element');
 const elNameInput = document.getElementById('element-name');
 const elLinkInput = document.getElementById('element-link');
+
+//элементы управления попапа с картинкой
+const imagePopup = document.getElementById('image-popup');
+const closeImagePopupButton = document.getElementById('close-image-popup');
+const imagePopupPicture = document.querySelector('.popup__image-preview');
+const imagePopupTitle = document.querySelector('.popup__image-title');
 
 //Шесть карточек «из коробки»
 renderElements();
@@ -57,6 +62,7 @@ function renderElements() {
 }
 
 //Форма редактирования профиля
+
 function showPopup() {
   popupInputName.value = profileTitle.textContent;
   popupInputdescription.value = profileSubTitle.textContent;
@@ -75,6 +81,7 @@ function submitFormHandler(evt) {
 }
 
 //Функции работы с формой карточек мест
+
 function showAddElPopup() {
   elNameInput.value = '';
   elLinkInput.value = '';
@@ -97,8 +104,22 @@ function addElement(card) {
   element.querySelector('.element__title').textContent = card.name;
   element.querySelector('.element__like-button').addEventListener('click', function (evt) { evt.target.classList.toggle('element__like-button_active'); });
   element.querySelector('.element__trash-button').addEventListener('click', function (evt) { evt.target.parentElement.remove(); });
+  element.querySelector('.element__image').addEventListener('click', function (evt) { showImagePopup(evt); });
   elementsContainer.append(element);
   hideAddElPopup();
+}
+
+//Функции работы попапа с картинкой
+
+function showImagePopup(evt) {
+  console.log(evt.target);
+  imagePopupPicture.src = evt.target.src;
+  imagePopupPicture.alt = evt.target.alt;
+  imagePopupTitle.textContent = evt.target.alt;
+  imagePopup.classList.add('popup_opened');
+}
+function hideImagePopup(evt) {
+  imagePopup.classList.remove('popup_opened');
 }
 
 //Листенеры кнопок
@@ -108,4 +129,5 @@ saveButton.addEventListener('submit', submitFormHandler);
 saveElButton.addEventListener('click', submitElFormHandler);
 addElButton.addEventListener('click', showAddElPopup);
 closeElPopupButton.addEventListener('click', hideAddElPopup);
+closeImagePopupButton.addEventListener('click', hideImagePopup);
 
