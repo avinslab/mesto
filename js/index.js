@@ -20,8 +20,8 @@ const formAddCard = document.querySelector('#add-element-form');
 //элементы управления попапа с картинкой
 const imagePopup = document.querySelector('#image-popup');
 const closeImagePopupButton = document.querySelector('#close-image-popup');
-const imagePopupPicture = document.querySelector('.popup__image-preview');
-const imagePopupTitle = document.querySelector('.popup__image-title');
+const imagePopupPicture = document.querySelector('#popup-image-picture');
+const imagePopupTitle = document.querySelector('#popup-image-title');
 
 //Шесть карточек «из коробки»
 
