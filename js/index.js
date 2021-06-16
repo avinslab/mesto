@@ -1,20 +1,18 @@
 //элементы управления профилем
-const editButton = document.querySelector('.profile__edit-button');
+const editButton = document.querySelector('#profile-edit-button');
 const closeButton = document.querySelector('#close-profile-popup');
-const saveButton = document.querySelector('.popup__container');
 const profilePopup = document.querySelector('#edit-profile');
-const profileTitle = document.querySelector('.profile__title');
-const profileSubTitle = document.querySelector('.profile__subtitle');
-const popupInputName = document.querySelector('#name');
-const popupInputdescription = document.querySelector('#description');
+const profileTitle = document.querySelector('#name');
+const profileSubTitle = document.querySelector('#description');
+const popupInputName = document.querySelector('#profile-name');
+const popupInputdescription = document.querySelector('#profile-description');
 
 //элементы управления карточками мест
 const elementsContainer = document.querySelector('.elements');
 const elementTemplate = document.querySelector('#element').content;
-const addElButton = document.querySelector('.profile__add-button');
+const addElButton = document.querySelector('#add-element-button');
 const closeElPopupButton = document.querySelector('#close-element-popup');
 const addElPopup = document.querySelector('#add-element');
-const saveElButton = document.querySelector('#save-element');
 const elNameInput = document.querySelector('#element-name');
 const elLinkInput = document.querySelector('#element-link');
 const formAddCard = document.querySelector('#add-element-form');
@@ -125,8 +123,8 @@ function showImagePopup(evt) {
 //Листенеры кнопок
 editButton.addEventListener('click', showProfilePopup);
 closeButton.addEventListener('click', function () { closePopup(profilePopup) });
-saveButton.addEventListener('submit', submitFormHandler);
-saveElButton.addEventListener('click', submitElFormHandler);
+profilePopup.addEventListener('submit', submitFormHandler);
+addElPopup.addEventListener('submit', submitElFormHandler);
 addElButton.addEventListener('click', showAddElPopup);
 closeElPopupButton.addEventListener('click', function () { closePopup(addElPopup) });
 closeImagePopupButton.addEventListener('click', function () { closePopup(imagePopup) });

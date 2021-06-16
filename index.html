@@ -19,11 +19,11 @@
     <section class="profile">
       <img class="profile__avatar" src="./images/avatar.jpg" alt="аватар" />
       <div class="profile__info">
-        <h1 class="profile__title">Жак-Ив Кусто</h1>
-        <button class="profile__edit-button" type="button"></button>
-        <p class="profile__subtitle">Исследователь океана</p>
+        <h1 class="profile__title" id="name">Жак-Ив Кусто</h1>
+        <button class="profile__edit-button" type="button" id="profile-edit-button"></button>
+        <p class="profile__subtitle" id="description">Исследователь океана</p>
       </div>
-      <button class="profile__add-button" type="button" aria-label="Добавить"></button>
+      <button class="profile__add-button" type="button" aria-label="Добавить" id="add-element-button"></button>
     </section>
     <section class="elements">
     </section>
@@ -36,9 +36,9 @@
       <div class="popup__container">
         <button class="popup__close-button" type="button" id="close-profile-popup"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup__form" name="profile-edit-form" method="post">
-          <input type="text" class="popup__input" id="name" name="profile-name">
-          <input type="text" class="popup__input" id="description" name="profile-description">
+        <form class="popup__form" name="profile-edit-form" method="post" id="edit-profile-form">
+          <input type="text" class="popup__input" id="profile-name" name="profile-name">
+          <input type="text" class="popup__input" id="profile-description" name="profile-description">
           <button type="submit" class="popup__save-button" id="save-profile-popup">Сохранить</button>
         </form>
       </div>
