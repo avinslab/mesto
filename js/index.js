@@ -2,10 +2,12 @@
 const editButton = document.querySelector('#profile-edit-button');
 const closeButton = document.querySelector('#close-profile-popup');
 const profilePopup = document.querySelector('#edit-profile');
+const profileForm = document.querySelector('#edit-profile-form');
 const profileTitle = document.querySelector('#name');
 const profileSubTitle = document.querySelector('#description');
 const popupInputName = document.querySelector('#profile-name');
 const popupInputdescription = document.querySelector('#profile-description');
+const saveProfileButton = document.querySelector('#save-profile-popup');
 
 //элементы управления карточками мест
 const elementsContainer = document.querySelector('.elements');
@@ -70,9 +72,21 @@ function closePopup(popup) {
 //Форма редактирования профиля
 
 function showProfilePopup() {
+  const profileFormInputs = Array.from(profileForm.querySelectorAll('.popup__input'));
+
   popupInputName.value = profileTitle.textContent;
   popupInputdescription.value = profileSubTitle.textContent;
+
+  //Проверяем валидацию присвоенных значений всех инпутов форм при показе попапа
+  profileFormInputs.forEach(inputElement => {
+    checkInputValidity(profileForm, inputElement, formConfig);
+  });
+
+  //Выставляем средствами валидации правильный стейт кнопки
+  toggleButtonState(profileFormInputs, saveProfileButton, formConfig);
+
   openPopup(profilePopup);
+
 }
 
 function submitFormHandler(evt) {
@@ -122,11 +136,13 @@ function showImagePopup(evt) {
 
 //Листенеры кнопок
 editButton.addEventListener('click', showProfilePopup);
-closeButton.addEventListener('click', function () { closePopup(profilePopup) });
+closeButton.addEventListener('click', function () { closePopup(profilePopup);});
 profilePopup.addEventListener('submit', submitFormHandler);
 addElPopup.addEventListener('submit', submitElFormHandler);
 addElButton.addEventListener('click', showAddElPopup);
-closeElPopupButton.addEventListener('click', function () { closePopup(addElPopup) });
-closeImagePopupButton.addEventListener('click', function () { closePopup(imagePopup) });
+closeElPopupButton.addEventListener('click', function () { closePopup(addElPopup);});
+closeImagePopupButton.addEventListener('click', function () { closePopup(imagePopup);});
+
 
 renderElements();
+
