@@ -71,4 +71,27 @@ const enableValidation = (config) => {
   });
 };
 
+//Производим валидацию формы и стейта кнопки при показе попапа
+
+const validatePopupForm = (form) => {
+  const profileFormInputs = Array.from(form.querySelectorAll('.popup__input'));
+
+  //Проверяем валидацию присвоенных значений всех инпутов форм
+  profileFormInputs.forEach(inputElement => {
+    checkInputValidity(form, inputElement, formConfig);
+  });
+
+  //Выставляем средствами валидации правильный стейт кнопки
+  toggleButtonState(profileFormInputs, saveProfileButton, formConfig);
+}
+
+//Прячем тексты ошибок при показе попапа
+const resetFormErrorsOnShow = (form) => {
+  const profileFormInputs = Array.from(form.querySelectorAll('.popup__input'));
+  profileFormInputs.forEach((inputElement) => {
+    hideInputError(form, inputElement, formConfig);
+  });
+
+}
+
 enableValidation(formConfig);

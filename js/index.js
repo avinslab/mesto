@@ -7,7 +7,6 @@ const profileTitle = document.querySelector('#name');
 const profileSubTitle = document.querySelector('#description');
 const popupInputName = document.querySelector('#profile-name');
 const popupInputdescription = document.querySelector('#profile-description');
-const saveProfileButton = document.querySelector('#save-profile-popup');
 
 //элементы управления карточками мест
 const elementsContainer = document.querySelector('.elements');
@@ -15,6 +14,7 @@ const elementTemplate = document.querySelector('#element').content;
 const addElButton = document.querySelector('#add-element-button');
 const closeElPopupButton = document.querySelector('#close-element-popup');
 const addElPopup = document.querySelector('#add-element');
+const addElForm = document.querySelector('#add-element-form');
 const elNameInput = document.querySelector('#element-name');
 const elLinkInput = document.querySelector('#element-link');
 const formAddCard = document.querySelector('#add-element-form');
@@ -72,21 +72,11 @@ function closePopup(popup) {
 //Форма редактирования профиля
 
 function showProfilePopup() {
-  const profileFormInputs = Array.from(profileForm.querySelectorAll('.popup__input'));
 
   popupInputName.value = profileTitle.textContent;
   popupInputdescription.value = profileSubTitle.textContent;
-
-  //Проверяем валидацию присвоенных значений всех инпутов форм при показе попапа
-  profileFormInputs.forEach(inputElement => {
-    checkInputValidity(profileForm, inputElement, formConfig);
-  });
-
-  //Выставляем средствами валидации правильный стейт кнопки
-  toggleButtonState(profileFormInputs, saveProfileButton, formConfig);
-
+  validatePopupForm(profileForm);
   openPopup(profilePopup);
-
 }
 
 function submitFormHandler(evt) {
@@ -100,6 +90,7 @@ function submitFormHandler(evt) {
 
 function showAddElPopup() {
   formAddCard.reset();
+  resetFormErrorsOnShow(addElForm);
   openPopup(addElPopup);
 }
 
@@ -136,12 +127,12 @@ function showImagePopup(evt) {
 
 //Листенеры кнопок
 editButton.addEventListener('click', showProfilePopup);
-closeButton.addEventListener('click', function () { closePopup(profilePopup);});
+closeButton.addEventListener('click', function () { closePopup(profilePopup); });
 profilePopup.addEventListener('submit', submitFormHandler);
 addElPopup.addEventListener('submit', submitElFormHandler);
 addElButton.addEventListener('click', showAddElPopup);
-closeElPopupButton.addEventListener('click', function () { closePopup(addElPopup);});
-closeImagePopupButton.addEventListener('click', function () { closePopup(imagePopup);});
+closeElPopupButton.addEventListener('click', function () { closePopup(addElPopup); });
+closeImagePopupButton.addEventListener('click', function () { closePopup(imagePopup); });
 
 
 renderElements();
