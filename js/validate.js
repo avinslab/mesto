@@ -85,7 +85,7 @@ const validatePopupForm = (form) => {
   toggleButtonState(profileFormInputs, buttonElement, formConfig);
 };
 
-//Прячем тексты ошибок при показе попапа
+//Прячем тексты ошибок при открытии попапа
 const resetFormErrorsOnShow = (form) => {
   const profileFormInputs = Array.from(form.querySelectorAll('.popup__input'));
   profileFormInputs.forEach((inputElement) => {
