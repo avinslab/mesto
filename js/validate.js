@@ -26,7 +26,7 @@ const hideInputError = (formElement, inputElement, config) => {
 const hasInvalidInput = (inputList) => {
   return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
-  })
+  });
 };
 
 const toggleButtonState = (inputList, buttonElement, config) => {
@@ -75,15 +75,15 @@ const enableValidation = (config) => {
 
 const validatePopupForm = (form) => {
   const profileFormInputs = Array.from(form.querySelectorAll('.popup__input'));
-
+  const buttonElement = form.querySelector(formConfig.submitButtonSelector);
   //Проверяем валидацию присвоенных значений всех инпутов форм
   profileFormInputs.forEach(inputElement => {
     checkInputValidity(form, inputElement, formConfig);
   });
 
   //Выставляем средствами валидации правильный стейт кнопки
-  toggleButtonState(profileFormInputs, saveProfileButton, formConfig);
-}
+  toggleButtonState(profileFormInputs, buttonElement, formConfig);
+};
 
 //Прячем тексты ошибок при показе попапа
 const resetFormErrorsOnShow = (form) => {
@@ -92,6 +92,6 @@ const resetFormErrorsOnShow = (form) => {
     hideInputError(form, inputElement, formConfig);
   });
 
-}
+};
 
 enableValidation(formConfig);

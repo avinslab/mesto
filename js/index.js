@@ -125,15 +125,39 @@ function showImagePopup(evt) {
   openPopup(imagePopup);
 }
 
-//Листенеры кнопок
+//Устанавливаем листенеры на сокрытие попапов
+
+//Скрываем попап по клику вне границ попапа
+function setHidePopupOnOverlayClick(popup) {
+  popup.addEventListener('click', function (evt) {
+    if (evt.target.contains(popup)) {
+      closePopup(popup);
+    }
+  });
+}
+
+//Обрабатываем нажатие на кнопку "закрыть"
+function setClosePopupButtonHandler(popup) {
+  const closeButton = popup.querySelector('.popup__close-button');
+  closeButton.addEventListener('click', function () {
+    closePopup(popup);
+  });
+}
+
+//Устанавливаем обработчики на все события сокрытия попапа
+function setAllPopupHideEvents() {
+  const popupList = Array.from(document.querySelectorAll('.popup'));
+  popupList.forEach((popup) => {
+    setHidePopupOnOverlayClick(popup);
+    setClosePopupButtonHandler(popup);
+  });
+}
+
+//Частные обработчики кнопок
 editButton.addEventListener('click', showProfilePopup);
-closeButton.addEventListener('click', function () { closePopup(profilePopup); });
 profilePopup.addEventListener('submit', submitFormHandler);
 addElPopup.addEventListener('submit', submitElFormHandler);
 addElButton.addEventListener('click', showAddElPopup);
-closeElPopupButton.addEventListener('click', function () { closePopup(addElPopup); });
-closeImagePopupButton.addEventListener('click', function () { closePopup(imagePopup); });
-
 
 renderElements();
-
+setAllPopupHideEvents();
