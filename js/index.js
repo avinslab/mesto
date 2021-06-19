@@ -62,20 +62,21 @@ function renderElements() {
 }
 
 //Обработка нажатия клавиш
-const escKeyHandler = (evt, popup) => {
+function escKeyHandler(evt) {
   if (evt.key === 'Escape') {
-    closePopup(popup);
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
   }
-};
+}
 
 //Управление видимостью попапов
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  document.addEventListener('keydown', (evt) => escKeyHandler(evt, popup));
+  document.addEventListener('keydown', escKeyHandler);
 }
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', (evt) => escKeyHandler(evt, popup));
+  document.removeEventListener('keydown', escKeyHandler);
 }
 
 //Форма редактирования профиля
@@ -111,12 +112,13 @@ function submitElFormHandler(evt) {
 
 function createCard(card) {
   const element = elementTemplate.querySelector('.element').cloneNode(true);
-  element.querySelector('.element__image').src = card.link;
-  element.querySelector('.element__image').alt = card.name;
+  const elementImage = element.querySelector('.element__image');
+  elementImage.src = card.link;
+  elementImage.alt = card.name;
   element.querySelector('.element__title').textContent = card.name;
   element.querySelector('.element__like-button').addEventListener('click', function (evt) { evt.target.classList.toggle('element__like-button_active'); });
   element.querySelector('.element__trash-button').addEventListener('click', function (evt) { evt.target.parentElement.remove(); });
-  element.querySelector('.element__image').addEventListener('click', function (evt) { showImagePopup(evt); });
+  element.querySelector('.element__image').addEventListener('click', function () { showImagePopup(card);});
   return element;
 }
 
@@ -126,10 +128,10 @@ function addElement(element) {
 
 //Функции работы попапа с картинкой
 
-function showImagePopup(evt) {
-  imagePopupPicture.src = evt.target.src;
-  imagePopupPicture.alt = evt.target.alt;
-  imagePopupTitle.textContent = evt.target.alt;
+function showImagePopup(card) {
+  imagePopupPicture.src = card.link;
+  imagePopupPicture.alt = card.name;
+  imagePopupTitle.textContent = card.name;
   openPopup(imagePopup);
 }
 

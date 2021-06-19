@@ -31,10 +31,13 @@ const hasInvalidInput = (inputList) => {
 
 const toggleButtonState = (inputList, buttonElement, config) => {
   if (hasInvalidInput(inputList)) {
+    buttonElement.disabled = true;
     buttonElement.classList.add(config.inactiveButtonClass);
   }
-  else
+  else {
+    buttonElement.disabled = false;
     buttonElement.classList.remove(config.inactiveButtonClass);
+  }
 };
 
 const checkInputValidity = (formElement, inputElement, config) => {
