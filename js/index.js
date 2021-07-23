@@ -131,6 +131,9 @@ function submitElFormHandler(evt) {
   const card = { name: elNameInput.value, link: elLinkInput.value };
   addElement(card);
   closePopup(addElPopup);
+  addElForm.reset();
+  elFormValidator.disableSubmitButton();
+
 }
 
 //Функции работы попапа с картинкой
@@ -172,8 +175,6 @@ editButton.addEventListener('click', showProfilePopup);
 profilePopup.addEventListener('submit', submitFormHandler);
 addElPopup.addEventListener('submit', submitElFormHandler);
 addElButton.addEventListener('click', showAddElPopup);
-
-//
 
 renderElements();
 setAllPopupsCloseEvents();

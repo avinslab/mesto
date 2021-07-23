@@ -62,6 +62,7 @@ export default class FormValidator {
     this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
     });
+    this._toggleButtonState();
   }
   //Производим валидацию формы и стейта кнопки при показе попапа
   validatePopupForm() {
@@ -74,12 +75,14 @@ export default class FormValidator {
     this._toggleButtonState();
   }
   enableValidation() {
-    this._inputList.forEach((formElement) => {
-      formElement.addEventListener('submit', function (evt) {
-        evt.preventDefault();
-      });
-      this._setEventListeners();
+    this._formEl.addEventListener('submit', function (evt) {
+      evt.preventDefault();
     });
+    this._setEventListeners();
+  }
+  disableSubmitButton() {
+    this._submitButtonEL.classList.add(this._inactiveButtonClass)
+    this._submitButtonEL.disabled = true;
   }
 
 }

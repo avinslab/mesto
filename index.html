@@ -36,7 +36,7 @@
       <div class="popup__container">
         <button class="popup__close-button" type="button" id="close-profile-popup"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup__form" name="profile-edit-form" method="post" id="edit-profile-form">
+        <form class="popup__form" name="profile-edit-form" method="post" id="edit-profile-form" novalidate>
           <input type="text" class="popup__input" id="profile-name" name="profile-name" placeholder="Имя" required
             minlength="2" maxlength="40">
           <span class="popup__error popup__error_visible profile-name-error"></span>
@@ -51,7 +51,7 @@
       <div class="popup__container">
         <button class="popup__close-button" type="button" id="close-element-popup"></button>
         <h2 class="popup__title">Новое место</h2>
-        <form class="popup__form" name="element-edit-form" method="post" id="add-element-form">
+        <form class="popup__form" name="element-edit-form" method="post" id="add-element-form" novalidate>
           <input type="text" class="popup__input" id="element-name" name="element-name" placeholder="Название" required
             minlength="2" maxlength="30">
           <span class="popup__error popup__error_visible element-name-error"></span>
@@ -81,8 +81,6 @@
     </article>
   </template>
   <script type="module" src="./js/index.js"></script>
-  <script type="module" src="./js/FormValidator.js"></script>
-  <script type="module" src="./js/Card.js"></script>
 </body>
 
 </html>

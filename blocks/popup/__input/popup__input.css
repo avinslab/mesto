@@ -19,5 +19,5 @@
 }
 
 .popup__input:focus {
-  outline-color: #FFFFFF;
+  outline:none;
 }
