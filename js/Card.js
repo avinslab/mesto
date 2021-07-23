@@ -21,6 +21,7 @@ export default class Card {
     this._element.querySelector('.element__image').addEventListener('click', () => this._handleCardClick({ link: this._image, name: this._name }));
   }
   _handleDeleteClick() {
+    this._element.remove();
     this._element = null;
   }
   createCard() {

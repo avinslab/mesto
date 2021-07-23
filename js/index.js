@@ -108,7 +108,7 @@ function closePopup(popup) {
 function showProfilePopup() {
   popupInputName.value = profileTitle.textContent;
   popupInputdescription.value = profileSubTitle.textContent;
-  profileFormValidator.validatePopupForm();
+  profileFormValidator.resetFormErrorsOnShow();
   openPopup(profilePopup);
 }
 
