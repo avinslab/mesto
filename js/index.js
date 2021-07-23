@@ -1,7 +1,6 @@
 //элементы управления профилем
 const editButton = document.querySelector('#profile-edit-button');
 const profilePopup = document.querySelector('#edit-profile');
-const profileForm = document.querySelector('#edit-profile-form');
 const profileTitle = document.querySelector('#name');
 const profileSubTitle = document.querySelector('#description');
 const popupInputName = document.querySelector('#profile-name');
@@ -9,21 +8,30 @@ const popupInputdescription = document.querySelector('#profile-description');
 
 //элементы управления карточками мест
 const elementsContainer = document.querySelector('.elements');
-const elementTemplate = document.querySelector('#element').content;
 const addElButton = document.querySelector('#add-element-button');
 const addElPopup = document.querySelector('#add-element');
 const addElForm = document.querySelector('#add-element-form');
 const elNameInput = document.querySelector('#element-name');
 const elLinkInput = document.querySelector('#element-link');
-const formAddCard = document.querySelector('#add-element-form');
 
 //элементы управления попапа с картинкой
 const imagePopup = document.querySelector('#image-popup');
 const imagePopupPicture = document.querySelector('#popup-image-picture');
 const imagePopupTitle = document.querySelector('#popup-image-title');
 
+//Объект настроек с селекторами и классами формы
+const formConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__save-button',
+  inactiveButtonClass: 'popup__save-button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+};
 
-
+//Импортируем классы карточки и валидатора
+import Card from './Card.js';
+import FormValidator from './FormValidator.js';
 
 //Шесть карточек «из коробки»
 
@@ -61,6 +69,15 @@ function renderElements() {
 
 }
 
+//Создаем объекты класса Card
+function createCard(card) {
+  const element = new Card({ name: card.name, image: card.link }, '#element', showImagePopup);
+  return element.createCard();
+}
+function addElement(element) {
+  elementsContainer.prepend(createCard(element));
+}
+
 //Обработка нажатия клавиш
 function escKeyHandler(evt) {
   if (evt.key === 'Escape') {
@@ -69,22 +86,29 @@ function escKeyHandler(evt) {
   }
 }
 
+//Создаем объекты класса FormValidator
+const profileFormValidator = new FormValidator(formConfig,profilePopup);
+profileFormValidator.enableValidation();
+
+const elFormValidator = new FormValidator(formConfig,addElPopup);
+elFormValidator.enableValidation();
+
 //Управление видимостью попапов
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', escKeyHandler);
 }
+
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', escKeyHandler);
 }
 
 //Форма редактирования профиля
-
 function showProfilePopup() {
   popupInputName.value = profileTitle.textContent;
   popupInputdescription.value = profileSubTitle.textContent;
-  validatePopupForm(profileForm);
+  profileFormValidator.validatePopupForm();
   openPopup(profilePopup);
 }
 
@@ -96,10 +120,9 @@ function submitFormHandler(evt) {
 }
 
 //Функции работы с формой карточек мест
-
 function showAddElPopup() {
-  formAddCard.reset();
-  resetFormErrorsOnShow(addElForm);
+  addElForm.reset();
+  elFormValidator.resetFormErrorsOnShow();
   openPopup(addElPopup);
 }
 
@@ -110,24 +133,7 @@ function submitElFormHandler(evt) {
   closePopup(addElPopup);
 }
 
-function createCard(card) {
-  const element = elementTemplate.querySelector('.element').cloneNode(true);
-  const elementImage = element.querySelector('.element__image');
-  elementImage.src = card.link;
-  elementImage.alt = card.name;
-  element.querySelector('.element__title').textContent = card.name;
-  element.querySelector('.element__like-button').addEventListener('click', function (evt) { evt.target.classList.toggle('element__like-button_active'); });
-  element.querySelector('.element__trash-button').addEventListener('click', function (evt) { evt.target.parentElement.remove(); });
-  element.querySelector('.element__image').addEventListener('click', function () { showImagePopup(card);});
-  return element;
-}
-
-function addElement(element) {
-  elementsContainer.prepend(createCard(element));
-}
-
 //Функции работы попапа с картинкой
-
 function showImagePopup(card) {
   imagePopupPicture.src = card.link;
   imagePopupPicture.alt = card.name;
@@ -135,7 +141,6 @@ function showImagePopup(card) {
   openPopup(imagePopup);
 }
 
-//Устанавливаем и удаляем листенеры на закрытие попапов
 //Скрываем попап по клику вне границ попапа
 function setClosePopupOnOverlayClick(popup) {
   popup.addEventListener('click', function (evt) {
