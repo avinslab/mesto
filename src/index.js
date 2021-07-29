@@ -1,3 +1,4 @@
+import './pages/index.css';
 //элементы управления профилем
 const editButton = document.querySelector('#profile-edit-button');
 const profilePopup = document.querySelector('#edit-profile');
@@ -27,12 +28,12 @@ const formConfig = {
 };
 
 //Импортируем классы карточки и валидатора
-import Card from './Card.js';
-import FormValidator from './FormValidator.js';
-import PopupWithImage from './PopupWithImage.js';
-import PopupWithForm from './PopupWithForm.js';
-import Userinfo from './UserInfo.js';
-import Section from './Section.js';
+import Card from './scripts/Card.js';
+import FormValidator from './scripts/FormValidator.js';
+import PopupWithImage from './scripts/PopupWithImage.js';
+import PopupWithForm from './scripts/PopupWithForm.js';
+import Userinfo from './scripts/UserInfo.js';
+import Section from './scripts/Section.js';
 
 //Шесть карточек «из коробки»
 

@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Алексей Василенко">
-  <link rel="stylesheet" href="./pages/index.css">
   <title>Место</title>
 </head>
 
@@ -17,7 +16,7 @@
   </header>
   <main>
     <section class="profile">
-      <img class="profile__avatar" src="./images/avatar.jpg" alt="аватар" />
+      <img class="profile__avatar" src=<%=require("./images/avatar.jpg")%> alt="аватар" />
       <div class="profile__info">
         <h1 class="profile__title" id="name">Жак-Ив Кусто</h1>
         <button class="profile__edit-button" type="button" id="profile-edit-button"></button>
