@@ -107,6 +107,7 @@ const addElementPopup = new PopupWithForm(addElPopupSelector, (inputValues) => {
   section.addItem(newCard);
   addElementPopup.close();
 });
+
 addElementPopup.setEventListeners();
 
 const imagePopup = new PopupWithImage(imagePopupSelector);
@@ -121,5 +122,6 @@ editButton.addEventListener('click', () => {
   console.log(profileData);
   profileEditPopup.open();
 });
-addElButton.addEventListener('click', () => addElementPopup.open());
+
+addElButton.addEventListener('click', () => { elFormValidator.validatePopupForm(); addElementPopup.open() });
 
