@@ -1,68 +1,31 @@
 import './pages/index.css';
-//элементы управления профилем
-const editButton = document.querySelector('#profile-edit-button');
-const profilePopup = document.querySelector('#edit-profile');
-const profilePopupSelector = '#edit-profile';
-const profileTitle = '#name';
-const profileSubTitle = '#description';
-const popupInputName = document.querySelector('#profile-name');
-const popupInputdescription = document.querySelector('#profile-description');
 
-//элементы управления карточками мест
-const elementsContainer = '.elements';
-const addElButton = document.querySelector('#add-element-button');
-const addElPopup = document.querySelector('#add-element');
-const addElPopupSelector = '#add-element';
-
-//элементы управления попапа с картинкой
-const imagePopupSelector = '#image-popup';
-
-//Объект настроек с селекторами и классами формы
-const formConfig = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__save-button',
-  inactiveButtonClass: 'popup__save-button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
-};
-
-//Импортируем классы карточки и валидатора
+//Импортируем классы карточeк,валидатора и переменные
 import Card from './scripts/Card.js';
 import FormValidator from './scripts/FormValidator.js';
 import PopupWithImage from './scripts/PopupWithImage.js';
 import PopupWithForm from './scripts/PopupWithForm.js';
 import Userinfo from './scripts/UserInfo.js';
 import Section from './scripts/Section.js';
+import {
+  initialCards,
+  elementsContainer,
+  profilePopup,
+  profileTitle,
+  profileSubTitle,
+  formConfig,
+  addElPopup,
+  profilePopupSelector,
+  addElPopupSelector,
+  imagePopupSelector,
+  editButton,
+  addElButton,
+  popupInputName,
+  popupInputdescription
+}
+  from './utils/constants.js';
 
-//Шесть карточек «из коробки»
 
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
 
 //Создаем объекты класса Card и Section
 function createCard(card) {
@@ -119,9 +82,8 @@ editButton.addEventListener('click', () => {
   popupInputName.value = profileData.name;
   popupInputdescription.value = profileData.description;
   profileFormValidator.resetFormErrorsOnShow();
-  console.log(profileData);
   profileEditPopup.open();
 });
 
-addElButton.addEventListener('click', () => { elFormValidator.validatePopupForm(); addElementPopup.open() });
+addElButton.addEventListener('click', () => { elFormValidator.resetFormErrorsOnShow(); addElementPopup.open() });
 
