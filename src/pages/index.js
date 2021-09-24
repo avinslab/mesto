@@ -1,12 +1,12 @@
-import './pages/index.css';
+import './index.css';
 
 //Импортируем классы карточeк,валидатора и переменные
-import Card from './scripts/Card.js';
-import FormValidator from './scripts/FormValidator.js';
-import PopupWithImage from './scripts/PopupWithImage.js';
-import PopupWithForm from './scripts/PopupWithForm.js';
-import Userinfo from './scripts/UserInfo.js';
-import Section from './scripts/Section.js';
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import Userinfo from '../components/UserInfo.js';
+import Section from '../components/Section.js';
 import {
   initialCards,
   elementsContainer,
@@ -23,7 +23,7 @@ import {
   popupInputName,
   popupInputdescription
 }
-  from './utils/constants.js';
+  from '../utils/constants.js';
 
 
 
