@@ -1,4 +1,9 @@
+//API
+export const token = '65ef2316-73ff-497f-a9ee-7b46b79b7eca';
+export const groupId = 'cohort-28';
+
 //элементы управления профилем
+
 export const editButton = document.querySelector('#profile-edit-button');
 export const profilePopup = document.querySelector('#edit-profile');
 export const profilePopupSelector = '#edit-profile';
@@ -16,6 +21,14 @@ export const addElPopupSelector = '#add-element';
 //элементы управления попапа с картинкой
 export const imagePopupSelector = '#image-popup';
 
+//элементы управления попапа удаления карточки
+export const deleteCardPopupSelector = '#delete-card-popup';
+
+//элементы управления попапа смены аватара
+export const changeAvatarPopupSelector = '#change-avatar-popup';
+export const profileAvatarSelector = '.profile__avatar';
+export const profileAvatarPopup = document.querySelector(changeAvatarPopupSelector);
+
 //Объект настроек с селекторами и классами формы
 export const formConfig = {
   formSelector: '.popup__form',
@@ -25,31 +38,4 @@ export const formConfig = {
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible'
 };
-//Шесть карточек «из коробки»
 
-export const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-  ];

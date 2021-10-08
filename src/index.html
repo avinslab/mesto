@@ -16,7 +16,7 @@
   </header>
   <main>
     <section class="profile">
-      <img class="profile__avatar" src=<%=require("./images/avatar.jpg")%> alt="аватар" />
+      <div class="profile__avatar"></div>
       <div class="profile__info">
         <h1 class="profile__title" id="name">Жак-Ив Кусто</h1>
         <button class="profile__edit-button" type="button" id="profile-edit-button"></button>
@@ -39,8 +39,8 @@
           <input type="text" class="popup__input" id="profile-name" name="userName" placeholder="Имя" required
             minlength="2" maxlength="40">
           <span class="popup__error popup__error_visible profile-name-error"></span>
-          <input type="text" class="popup__input" id="profile-description" name="userDescription"
-            placeholder="О себе" required minlength="2" maxlength="200">
+          <input type="text" class="popup__input" id="profile-description" name="userDescription" placeholder="О себе"
+            required minlength="2" maxlength="200">
           <span class="popup__error popup__error_visible profile-description-error"></span>
           <button type="submit" class="popup__save-button" id="save-profile-popup">Сохранить</button>
         </form>
@@ -68,6 +68,26 @@
         <h2 class="popup__image-title" id="popup-image-title"></h2>
       </div>
     </div>
+    <div class="popup" id="delete-card-popup">
+      <div class="popup__container">
+        <button class="popup__close-button" type="button" id="close-element-popup"></button>
+        <h2 class="popup__title">Вы уверены?</h2>
+        <form class="popup__form" novalidate>
+          <button type="submit" class="popup__save-button" id="save-element">Да</button>
+        </form>
+      </div>
+    </div>
+    <div class="popup" id="change-avatar-popup">
+      <div class="popup__container">
+        <button class="popup__close-button" type="button" id="close-element-popup"></button>
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form class="popup__form" name="change-avatar-form" method="post" id="add-element-form" novalidate>
+          <input type="url" class="popup__input" id="avatar-link" name="link" placeholder="Ссылка на картинку" required>
+          <span class="popup__error popup__error_visible avatar-link-error"></span>
+          <button type="submit" class="popup__save-button" id="save-element">Сохранить</button>
+        </form>
+      </div>
+    </div>
   </main>
   <template id="element">
     <article class="element">
@@ -75,7 +95,10 @@
       <img class="element__image" />
       <div class="element__panel">
         <h2 class="element__title"></h2>
-        <button class="element__like-button" type="button"></button>
+        <div class="element__like-container">
+          <button class="element__like-button" type="button"></button>
+          <p class="element__like-counter"></p>
+        </div>
       </div>
     </article>
   </template>

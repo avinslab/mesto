@@ -63,16 +63,7 @@ export default class FormValidator {
     });
     this._toggleButtonState();
   }
-  //Производим валидацию формы и стейта кнопки при показе попапа
-  validatePopupForm() {
-    //Проверяем валидацию присвоенных значений всех инпутов форм
-    this._inputList.forEach(inputElement => {
-      this._checkInputValidity(inputElement);
-    });
-
-    //Выставляем средствами валидации правильный стейт кнопки
-    this._toggleButtonState();
-  }
+  
   enableValidation() {
     this._formEl.addEventListener('submit', function (evt) {
       evt.preventDefault();
