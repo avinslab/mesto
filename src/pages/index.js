@@ -153,10 +153,12 @@ profileEditPopup.setEventListeners();
 //Попап добавления карточки
 const addElementPopup = new PopupWithForm(addElPopupSelector, (inputValues) => {
   inputValues.isOwned = true;
-  const newCard = createCard(inputValues);
   addElementPopup.renderLoading(true);
   mestoApi.postNewCard(inputValues)
-    .then(() => {
+    .then((res) => {
+      const newCardConfig = inputValues;
+      inputValues._id = res._id;
+      const newCard = createCard(newCardConfig);
       section.addItem(newCard);
       addElementPopup.renderLoading(false);
       addElementPopup.close();
