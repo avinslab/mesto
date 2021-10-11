@@ -155,15 +155,20 @@ const changeAvatarPopup = new PopupWithForm(
     changeAvatarPopup.renderLoading(true);
     mestoApi.setAvatar(inputValues.link)
       .then(res => {
-        userInfo.setUserAvatar(res.avatar)
-
-        changeAvatarPopup.close()
+        userInfo.setUserInfo({
+          userName: res.name,
+          userDescription: res.about,
+          uid: res._id,
+          avatar: res.avatar
+        });
+        userInfo.setUserAvatar(res.avatar);
       })
       .catch((err) => {
         console.log(err);
       })
       .finally(() => {
         changeAvatarPopup.renderLoading(false);
+        changeAvatarPopup.close();
       });
   });
 changeAvatarPopup.setEventListeners();
