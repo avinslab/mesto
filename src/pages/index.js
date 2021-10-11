@@ -29,12 +29,13 @@ import {
   profileAvatarSelector,
   profileAvatarPopup,
   token,
-  groupId
+  groupId,
+  baseUrl
 }
   from '../utils/constants.js';
 
 //Создаем объект класса API
-const mestoApi = new Api(token, groupId);
+const mestoApi = new Api(token, groupId, baseUrl)
 
 //Функция создания объекта класса карточки
 function createCard(card) {
@@ -54,15 +55,13 @@ function createCard(card) {
       if (element._liked)
         mestoApi.removeLike(card._id)
           .then((res) => {
-            element.setLikes(res.likes);
-            element.toggleLikedByOwner();
+            element.updateLikes(res.likes);
           })
           .catch((err) => console.log(`Ошибка: ${err}`));
       else
         mestoApi.setLike(card._id)
           .then((res) => {
-            element.setLikes(res.likes);
-            element.toggleLikedByOwner();
+            element.updateLikes(res.likes);
           })
           .catch((err) => console.log(`Ошибка: ${err}`));
     },
@@ -73,39 +72,15 @@ function createCard(card) {
   );
   return element.createCard();
 }
-//маcсив объектов карточек
-const cards = [];
 
 //Секция с карточками
 const section = new Section(
-  {
-    items: cards,
-    renderer: (item) => {
-      const cardElement = createCard(item);
-      section.addItem(cardElement);
-    }
+  (item) => {
+    const cardElement = createCard(item);
+    section.addItem(cardElement);
   },
   elementsContainer);
 
-//Загружаем карточки с сервера 
-function updateCardSection() {
-  mestoApi.getCardsData()
-    .then((res) => {
-      res.forEach((card) => cards.push(
-        {
-          name: card.name,
-          link: card.link,
-          likes: card.likes,
-          _id: card._id,
-          isOwned: card.owner._id === userInfo.getUserInfo().uid,
-        }));
-    })
-    .finally(() => {
-      section.renderItems();
-    })
-    .catch((err) => console.log(`Ошибка: ${err}`));
-}
-updateCardSection();
 //Создаем объекты класса UserInfo
 const userInfo = new Userinfo(
   {
@@ -113,18 +88,6 @@ const userInfo = new Userinfo(
     profileDescriptionSelector: profileSubTitle,
     profileAvatarSelector: profileAvatarSelector
   });
-
-//Загружаем с сервера данные профиля 
-mestoApi.getProfileData()
-  .then((profileData) => {
-    userInfo.setUserInfo({
-      userName: profileData.name,
-      userDescription: profileData.about,
-      uid: profileData._id
-    });
-    userInfo.setUserAvatar(profileData.avatar);
-  })
-  .catch((err) => console.log(`Ошибка: ${err}`));
 
 //Создаем объекты класса FormValidator
 const profileFormValidator = new FormValidator(formConfig, profilePopup);
@@ -143,26 +106,24 @@ const profileEditPopup = new PopupWithForm(profilePopupSelector, (inputValues) =
   profileEditPopup.renderLoading(true);
   mestoApi.patchProfileData({ name: inputValues.userName, about: inputValues.userDescription })//Сохраняем данные о пользователе на сервере 
     .then(() => {
-      profileEditPopup.renderLoading(false);
       profileEditPopup.close();
     })
+    .finally(() => profileEditPopup.renderLoading(false))
     .catch((err) => console.log(`Ошибка: ${err}`));
 });
 profileEditPopup.setEventListeners();
 
 //Попап добавления карточки
 const addElementPopup = new PopupWithForm(addElPopupSelector, (inputValues) => {
-  inputValues.isOwned = true;
   addElementPopup.renderLoading(true);
   mestoApi.postNewCard(inputValues)
     .then((res) => {
-      const newCardConfig = inputValues;
-      inputValues._id = res._id;
-      const newCard = createCard(newCardConfig);
+      res.isOwned = true;
+      const newCard = createCard(res);
       section.addItem(newCard);
-      addElementPopup.renderLoading(false);
       addElementPopup.close();
     })
+    .finally(() => addElementPopup.renderLoading(false))
     .catch((err) => console.log(`Ошибка: ${err}`));
 });
 addElementPopup.setEventListeners();
@@ -195,6 +156,7 @@ const changeAvatarPopup = new PopupWithForm(
     mestoApi.setAvatar(inputValues.link)
       .then(res => {
         userInfo.setUserAvatar(res.avatar)
+
         changeAvatarPopup.close()
       })
       .catch((err) => {
@@ -209,6 +171,7 @@ changeAvatarPopup.setEventListeners();
 //Частные обработчики кнопок
 document.querySelector(profileAvatarSelector).addEventListener('click',
   () => {
+    changeAvatarFormValidator.resetFormErrorsOnShow();
     changeAvatarPopup.open();
   });
 
@@ -225,3 +188,30 @@ addElButton.addEventListener('click',
     elFormValidator.resetFormErrorsOnShow();
     addElementPopup.open()
   });
+
+Promise.all([mestoApi.getProfileData(), mestoApi.getCardsData()])
+  .then(
+    ([profileData, cardsData]) => {
+      //Устанавливаем аватар и данные профиля
+      userInfo.setUserInfo({
+        userName: profileData.name,
+        userDescription: profileData.about,
+        uid: profileData._id,
+        avatar: profileData.avatar
+      });
+      userInfo.setUserAvatar();
+
+      //Отрисовываем карточки с сервера 
+      const cards = cardsData.map((card) => {
+        return {
+          name: card.name,
+          link: card.link,
+          likes: card.likes,
+          _id: card._id,
+          isOwned: card.owner._id === userInfo.getUserInfo().uid,
+        };
+      });
+      section.renderItems(cards);
+    })
+  .catch((err) =>
+    console.error(`Ошибка при обращении к API ${baseUrl}:${err}`));

@@ -1,6 +1,7 @@
 //API
 export const token = '65ef2316-73ff-497f-a9ee-7b46b79b7eca';
 export const groupId = 'cohort-28';
+export const baseUrl = 'https://mesto.nomoreparties.co/v1/';
 
 //элементы управления профилем
 

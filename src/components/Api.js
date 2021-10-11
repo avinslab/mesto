@@ -1,23 +1,25 @@
 export default class Api {
-    constructor(token, id) {
+    constructor(token, id, baseUrl) {
         this._token = token;
         this._id = id;
+        this._baseUrl = baseUrl;
+        this._headers = {
+            authorization: this._token,
+            'Content-Type': 'application/json'
+        };
     }
+
     getProfileData() {
-        return fetch(`https://mesto.nomoreparties.co/v1/${this._id}/users/me`, {
-            headers: {
-                authorization: this._token
-            }
+        return fetch(`${this._baseUrl}${this._id}/users/me`, {
+            headers: this._headers,
         })
             .then(this._getResponse)
     }
+
     patchProfileData(profileData) {
-        return fetch(`https://mesto.nomoreparties.co/v1/${this._id}/users/me`, {
+        return fetch(`${this._baseUrl}${this._id}/users/me`, {
             method: 'PATCH',
-            headers: {
-                authorization: this._token,
-                'Content-Type': 'application/json'
-            },
+            headers: this._headers,
             body: JSON.stringify({
                 name: profileData.name,
                 about: profileData.about
@@ -25,21 +27,18 @@ export default class Api {
 
         }).then(this._getResponse);
     }
+
     getCardsData() {
-        return fetch(`https://mesto.nomoreparties.co/v1/${this._id}/cards`, {
-            headers: {
-                authorization: this._token
-            }
+        return fetch(`${this._baseUrl}${this._id}/cards`, {
+            headers: this._headers,
         })
             .then(this._getResponse)
     }
+
     postNewCard(card) {
-        return fetch(`https://mesto.nomoreparties.co/v1/${this._id}/cards`, {
+        return fetch(`${this._baseUrl}${this._id}/cards`, {
             method: 'POST',
-            headers: {
-                authorization: this._token,
-                'Content-Type': 'application/json'
-            },
+            headers: this._headers,
             body: JSON.stringify({
                 name: card.name,
                 link: card.link
@@ -47,49 +46,42 @@ export default class Api {
         })
             .then(this._getResponse);
     }
-    deleteCard(cardId){
-        return fetch(`https://mesto.nomoreparties.co/v1/${this._id}/cards/${cardId}`, {
+
+    deleteCard(cardId) {
+        return fetch(`${this._baseUrl}${this._id}/cards/${cardId}`, {
             method: 'DELETE',
-            headers: {
-                authorization: this._token,
-                'Content-Type': 'application/json'
-            }
+            headers: this._headers,
         })
             .then(this._getResponse);
     }
+
     setLike(cardId) {
-        return fetch(`https://mesto.nomoreparties.co/v1/${this._id}/cards/likes/${cardId}`, {
+        return fetch(`${this._baseUrl}${this._id}/cards/likes/${cardId}`, {
             method: 'PUT',
-            headers: {
-                authorization: this._token,
-                'Content-Type': 'application/json'
-            }
+            headers: this._headers,
         })
             .then(this._getResponse);
     }
-    removeLike(cardId){
-        return fetch(`https://mesto.nomoreparties.co/v1/${this._id}/cards/likes/${cardId}`, {
+
+    removeLike(cardId) {
+        return fetch(`${this._baseUrl}${this._id}/cards/likes/${cardId}`, {
             method: 'DELETE',
-            headers: {
-                authorization: this._token,
-                'Content-Type': 'application/json'
-            }
+            headers: this._headers,
         })
             .then(this._getResponse);
     }
-    setAvatar(link){
-        return fetch(`https://mesto.nomoreparties.co/v1/${this._id}/users/me/avatar`, {
+
+    setAvatar(link) {
+        return fetch(`${this._baseUrl}${this._id}/users/me/avatar`, {
             method: 'PATCH',
-            headers: {
-                authorization: this._token,
-                'Content-Type': 'application/json'
-            },
+            headers: this._headers,
             body: JSON.stringify({
                 avatar: link,
             })
         })
             .then(this._getResponse);
     }
+    
     _getResponse(res) {
         if (res.ok)
             return res.json();
